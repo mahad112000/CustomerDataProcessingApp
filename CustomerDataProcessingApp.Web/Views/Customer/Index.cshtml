@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Customers Page";
+}
+
+@model IEnumerable<Customer>
+
+<br />
+<br />
+<div>
+<a asp-action="Create" class="btn btn-primary">Add customer</a> 
+<br />
+<table class="table">
+    <tdead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Actions</th>
+        </tr>
+    </tdead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
+                <td>@item.Phone</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger" onclick="if (confirm('Delete selected item- @item.Name?')){return true;}else{event.stopPropagation(); event.preventDefault();};">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
